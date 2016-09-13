@@ -1,4 +1,6 @@
-/**
- * Created by gabriel on 9/13/16.
- */
 
+// Sets up jQuery and Bootstrap
+var $ = require('jquery');
+global.jQuery = $;
+
+var bootstrap = require('bootstrap');

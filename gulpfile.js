@@ -1,5 +1,5 @@
 /**
- * Created by gabriel on 9/13/16.
+ * Created by Gabriel Alacchi on 9/13/16.
  */
 
 var DEBUG = true;
@@ -20,7 +20,7 @@ const src = {
 const dest = {
   "js": "./build/src",
   "scss": "./build/css",
-  "images": "./build",
+  "images": "./build/img",
   "html": "./build"
 };
 
@@ -45,7 +45,9 @@ gulp.task('style', function() {
     .pipe(scss({
       outputStyle: DEBUG ? 'expanded' : 'compressed'
     })).on('error', scss.logError)
-    .pipe(gulp.dest(dest.scss));
+    .pipe(gulp.dest(dest.scss))
+    .pipe(browserSync.stream())
+    .on('error', onError);
 });
 
 gulp.task('images', function () {
@@ -59,7 +61,9 @@ gulp.task('images', function () {
 
 gulp.task('html', function() {
   return gulp.src(src.html)
-    .pipe(gulp.dest(dest.html));
+    .pipe(gulp.dest(dest.html))
+    .pipe(browserSync.stream())
+    .on('error', onError);
 });
 
 gulp.task('watch', function () {
@@ -82,5 +86,14 @@ gulp.task('as-prod', function() {
 gulp.task('build', ['style', 'bundle', 'images', 'html']);
 
 gulp.task('production', ['as-prod', 'build']);
+
+gulp.task('build-if-dev', function() {
+  if (process.env.NODE_ENV != 'production') {
+    // We are not on a production server, proceed to build
+    gulp.run('build');
+  } else {
+    console.log("Production Deployment... Gulp won't run build");
+  }
+});
 
 gulp.task('default', ['style', 'bundle', 'images', 'html', 'watch']);
