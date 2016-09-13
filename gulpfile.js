@@ -13,7 +13,7 @@ var browserSync = require('browser-sync').create();
 const src = {
   "js": "./web/src/**/*.js",
   "scss": "./web/scss/**/*.scss",
-  "images": "./images/**/*",
+  "images": "./web/images/**/*",
   "html": "./web/pages/**/*.html"
 };
 
