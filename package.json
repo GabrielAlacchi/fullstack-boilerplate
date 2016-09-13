@@ -1,0 +1,19 @@
+{
+  "name": "fullstack-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate for developing with express and webpack, gulp for frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielAlacchi/fullstack-boilerplate.git"
+  },
+  "author": "Gabriel Alacchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GabrielAlacchi/fullstack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/GabrielAlacchi/fullstack-boilerplate#readme"
+}
