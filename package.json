@@ -4,7 +4,8 @@
   "description": "Boilerplate for developing with express and webpack, gulp for frontend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "gulp production"
   },
   "repository": {
     "type": "git",

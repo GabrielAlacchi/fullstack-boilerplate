@@ -2,7 +2,7 @@
  * Created by gabriel on 9/13/16.
  */
 
-var DEBUG = process.env.NODE_ENV != 'production';
+var DEBUG = true;
 
 var gulp = require('gulp');
 var imageMin = require('gulp-imagemin');
@@ -31,7 +31,9 @@ function onError(error) {
 
 gulp.task('bundle', function () {
   return gulp.src(src.js)
-    .pipe(webpack( require('./webpack.config.js') ))
+    .pipe(webpack( require('./webpack.config.js')
+      .getWithDebugFlag(DEBUG) // Get's the webpack config with a debug flag
+    ))
     .on('error', onError)
     .pipe(gulp.dest(dest.js))
     .pipe(browserSync.stream())
@@ -60,4 +62,25 @@ gulp.task('html', function() {
     .pipe(gulp.dest(dest.html));
 });
 
-gulp.task('default', ['style', 'bundle', 'images', 'html']);
+gulp.task('watch', function () {
+
+  browserSync.init({
+    proxy: 'localhost:3000'
+  });
+
+  gulp.watch([src.js], ['bundle']);
+  gulp.watch([src.images], ['images']);
+  gulp.watch([src.scss], ['style']);
+  gulp.watch([src.html], ['html']);
+
+});
+
+gulp.task('as-prod', function() {
+  DEBUG = false;
+});
+
+gulp.task('build', ['style', 'bundle', 'images', 'html']);
+
+gulp.task('production', ['as-prod', 'build']);
+
+gulp.task('default', ['style', 'bundle', 'images', 'html', 'watch']);
