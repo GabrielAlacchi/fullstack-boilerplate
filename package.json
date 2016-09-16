@@ -1,11 +1,12 @@
 {
   "name": "fullstack-boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplate for developing with express and webpack, gulp for frontend",
+  "version": "0.1.2",
+  "description": "Boilerplate for developing with express and webpack, gulp for frontend. jQuery and Bootstrap set up out of the box.",
   "main": "index.js",
   "scripts": {
     "start": "node bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm install --ignore-scripts",
     "postinstall": "gulp build-if-dev",
     "prepublish": "gulp production"
   },
@@ -35,6 +36,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "gulp": "^3.9.1"
   }
 }
